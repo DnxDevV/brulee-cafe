@@ -44,9 +44,25 @@
         { value: "6yr", label: "Est. 2018"      },
         { value: "4.9★", label: "Average Rating" },
       ],
+
       hours: "Mon – Fri: 7am – 9pm  ·  Sat – Sun: 8am – 10pm",
 
-      // ── Menu data — edit items here; the grid re-renders automatically ──
+      about: {
+        heading: "The Ritual of the Roast",
+        story: [
+          "Founded in 2018, Brûlée began with a simple question: why do we rush something as beautiful as coffee?",
+          "We source our beans through direct-trade relationships, ensuring every farmer is paid fairly."
+        ],
+        imageAlt: "Our head roaster checking the bean temperature",
+      },
+      contact: {
+        address: "128 Artisan Way, Coffee District, BK 11201",
+        phone: "+91 98765 43210",
+        email: "hello@brulee.cafe",
+        social: ["Instagram", "Twitter", "Spotify"]
+      },
+      // ------------------------------
+
       menu: {
         heading:    "Our Menu",
         subtext:    "Every item is seasonal, intentional, and made to be enjoyed slowly.",
@@ -663,17 +679,93 @@
       </div>
     </section>
 
-    <section id="about"
-             class="min-h-[50vh] flex items-center justify-center bg-cream"
-             aria-label="About section — coming soon">
-      <p class="font-display italic text-2xl text-fog/60">About section coming soon…</p>
-    </section>
+   <section id="about" class="bg-cream py-24 md:py-32 overflow-hidden" aria-labelledby="about-heading">
+  <div class="max-w-7xl mx-auto px-6 md:px-10">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      
+      <div class="relative z-10">
+        <span class="font-body text-[10px] tracking-ultra uppercase text-fog/50 block mb-3">02 — Our Story</span>
+        <h2 id="about-heading" class="font-display text-4xl md:text-5xl font-bold text-espresso leading-tight mb-8">
+          Crafted with <br/> <em class="text-caramel not-italic">Intention.</em>
+        </h2>
+        <div class="space-y-6">
+          <p class="font-body font-light text-base text-fog leading-relaxed">
+            Founded in 2018, Brûlée began with a simple question: why do we rush something as beautiful as coffee?
+          </p>
+          <p class="font-body font-light text-base text-fog leading-relaxed">
+            We source our beans through direct-trade relationships, ensuring every farmer is paid fairly. Our roasting process happens in small batches to preserve every delicate note.
+          </p>
+        </div>
+        
+        <div class="mt-12">
+          <p class="font-display italic text-espresso text-xl">The Brûlée Team</p>
+        </div>
+      </div>
 
-    <section id="contact"
-             class="min-h-[50vh] flex items-center justify-center bg-espresso"
-             aria-label="Contact section — coming soon">
-      <p class="font-display italic text-2xl text-cream/30">Contact section coming soon…</p>
-    </section>
+      <div class="relative group">
+  <div class="absolute -inset-4 border border-caramel/20 rounded-sm translate-x-4 translate-y-4 group-hover:translate-x-2 group-hover:translate-y-2 transition-transform duration-500"></div>
+  <div class="aspect-[4/5] bg-parchment relative overflow-hidden rounded-sm shadow-2xl flex items-center justify-center border border-espresso/5">
+     
+     <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&q=80&w=800" 
+          alt="Coffee shop interior" 
+          class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700">
+     </div>
+</div>
+
+    </div>
+  </div>
+</section> 
+
+  <section id="contact" class="bg-espresso py-24 md:py-32 relative overflow-hidden" aria-labelledby="contact-heading">
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-caramel/30 to-transparent"></div>
+
+  <div class="max-w-7xl mx-auto px-6 md:px-10">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
+      
+      <div class="flex flex-col justify-center">
+        <span class="font-body text-[10px] tracking-ultra uppercase text-caramel/60 block mb-4">03 — Connect</span>
+        <h2 id="contact-heading" class="font-display text-4xl md:text-5xl font-bold text-cream mb-6">
+          Join the <br/><em class="italic text-caramel not-italic">Morning Ritual.</em>
+        </h2>
+        <p class="font-body font-light text-cream/50 mb-10 max-w-sm leading-relaxed">
+          Receive notes on new bean origins, brewing guides, and Sunday morning playlists.
+        </p>
+        
+        <form class="flex flex-col sm:flex-row gap-3 max-w-md" onsubmit="event.preventDefault(); alert('Subscribed!');">
+          <input type="email" placeholder="Email Address" required
+                 class="bg-espresso-muted/50 border border-cream/10 rounded-sm px-5 py-4 text-cream font-body text-sm focus:border-caramel focus:outline-none transition-colors flex-grow">
+          <button type="submit" 
+                  class="bg-caramel text-espresso font-body font-medium text-xs tracking-ultra uppercase px-8 py-4 rounded-sm hover:bg-caramel-deep transition-all duration-300">
+            Join
+          </button>
+        </form>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-12 lg:gap-8 bg-cream/[0.02] border border-cream/[0.05] p-10 md:p-12 rounded-sm">
+        <div>
+          <h4 class="font-display text-caramel text-xl mb-4 italic">Visit Us</h4>
+          <p class="font-body text-cream/70 text-sm leading-loose">
+            128 Artisan Way<br/>
+            Coffee District, BK 11201
+          </p>
+          <a href="#" class="inline-block mt-4 text-[10px] tracking-ultra uppercase text-caramel hover:text-cream transition-colors">Open in Maps →</a>
+        </div>
+        <div>
+          <h4 class="font-display text-caramel text-xl mb-4 italic">Inquiries</h4>
+          <p class="font-body text-cream/70 text-sm leading-loose">
+            hello@brulee.cafe<br/>
+            +91 98765 43210
+          </p>
+          <div class="flex gap-4 mt-6">
+            <span class="w-2 h-2 rounded-full bg-caramel animate-pulse"></span>
+            <span class="font-body text-[10px] tracking-ultra uppercase text-cream/30">Taking orders today</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>  
   </main>
 
   <!-- ════════════════════════════════════════════════════════
