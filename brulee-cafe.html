@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Brûlée — Artisan coffee, roasted daily. Single-origin beans, signature blends, crafted with intention." />
+  <title>Brûlée — Artisan Coffee</title>
+
+  <!-- Fonts: Fraunces (editorial serif display) + DM Sans (clean body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;1,9..144,400;1,9..144,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+
+  <!--
+  ╔══════════════════════════════════════════════════════════════════╗
+  ║  SITE CONFIGURATION — Edit this object to customise the site.   ║
+  ║  No need to touch the HTML below for copy or link changes.       ║
+  ╚══════════════════════════════════════════════════════════════════╝
+  -->
+  <script>
+    window.SITE_CONFIG = {
+      brand: {
+        name: "Brûlée",
+        subline: "Est. 2018 · Artisan Coffee",
+      },
+      nav: {
+        links: [
+          { label: "Menu",    href: "#menu"    },
+          { label: "About",   href: "#about"   },
+          { label: "Contact", href: "#contact" },
+        ],
+        cta: { label: "Order Now", href: "#order" },
+      },
+      hero: {
+        badge:   "Open Today · 7am – 9pm",
+        headline: ["Artisan Coffee,", "Roasted Daily."],
+        accent_word_line: 1, // which headline line gets caramel colour (0-indexed)
+        subtext:  "From single-origin beans to signature blends — every cup is crafted with intention. Come in, slow down, stay awhile.",
+        cta_primary:   { label: "View Menu",  href: "#menu"  },
+        cta_secondary: { label: "Our Story",  href: "#about" },
+      },
+      stats: [
+        { value: "12+", label: "Bean Origins"   },
+        { value: "6yr", label: "Est. 2018"      },
+        { value: "4.9★", label: "Average Rating" },
+      ],
+      hours: "Mon – Fri: 7am – 9pm  ·  Sat – Sun: 8am – 10pm",
+
+      // ── Menu data — edit items here; the grid re-renders automatically ──
+      menu: {
+        heading:    "Our Menu",
+        subtext:    "Every item is seasonal, intentional, and made to be enjoyed slowly.",
+        categories: ["All", "Espresso", "Filter", "Kitchen"],
+        items: [
+          {
+            category:    "Espresso",
+            name:        "Espresso",
+            description: "A short, concentrated shot of our house blend. Bold, bright, and faintly chocolatey.",
+            price:       "₹180",
+            badge:       null,
+          },
+          {
+            category:    "Espresso",
+            name:        "Cappuccino",
+            description: "Equal parts espresso, steamed milk, and velvety microfoam. A timeless classic.",
+            price:       "₹260",
+            badge:       "Popular",
+          },
+          {
+            category:    "Espresso",
+            name:        "Flat White",
+            description: "Double ristretto with less milk than a latte — coffee forward, silky, composed.",
+            price:       "₹280",
+            badge:       null,
+          },
+          {
+            category:    "Espresso",
+            name:        "Cortado",
+            description: "Espresso cut with a small pour of warm milk to reduce acidity. Clean and precise.",
+            price:       "₹240",
+            badge:       null,
+          },
+          {
+            category:    "Filter",
+            name:        "V60 Pour Over",
+            description: "Single-origin, hand-poured to order. Bright, aromatic, and worth the wait.",
+            price:       "₹320",
+            badge:       "Seasonal",
+          },
+          {
+            category:    "Filter",
+            name:        "Cold Brew",
+            description: "Steeped cold for 18 hours. Smooth, low-acid, and dangerously easy to drink.",
+            price:       "₹300",
+            badge:       null,
+          },
+          {
+            category:    "Filter",
+            name:        "Batch Filter",
+            description: "Our rotating house filter, brewed fresh every hour. Simple, reliable, satisfying.",
+            price:       "₹220",
+            badge:       null,
+          },
+          {
+            category:    "Filter",
+            name:        "Nitro Cold Brew",
+            description: "Cold brew on nitrogen tap. Creamy, cascading head — served straight from the line.",
+            price:       "₹350",
+            badge:       "New",
+          },
+          {
+            category:    "Kitchen",
+            name:        "Brûlée Toast",
+            description: "Sourdough, whipped ricotta, wildflower honey, caramelised sugar. Our signature plate.",
+            price:       "₹380",
+            badge:       "Chef's Pick",
+          },
+          {
+            category:    "Kitchen",
+            name:        "Almond Croissant",
+            description: "Twice-baked, almond cream-filled, dusted in icing sugar. Baked in-house each morning.",
+            price:       "₹280",
+            badge:       "Popular",
+          },
+          {
+            category:    "Kitchen",
+            name:        "Seasonal Tartine",
+            description: "Open-faced sourdough with rotating seasonal toppings. Ask your server for today's.",
+            price:       "₹420",
+            badge:       "Seasonal",
+          },
+        ],
+      },
+    };
+  </script>
+
+  <!-- Tailwind CDN — custom theme extending warm palette -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            espresso: {
+              DEFAULT: "#1A0E08",
+              light:   "#2C1608",
+              muted:   "#3D1F0F",
+            },
+            cream:     "#F5E6CC",
+            parchment: "#EDD9B7",
+            caramel:   "#C17C3A",
+            "caramel-deep": "#9A5F24",
+            fog:       "#8C7060",
+          },
+          fontFamily: {
+            display: ["Fraunces", "Georgia", "serif"],
+            body:    ["DM Sans", "system-ui", "sans-serif"],
+          },
+          letterSpacing: {
+            "ultra": "0.28em",
+          },
+        },
+      },
+    };
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    /* ── Base ──────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; }
+
+    /* ── Film grain overlay ────────────────────────────────── */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9000;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    }
+
+    /* ── Hero diagonal clip ────────────────────────────────── */
+    .hero-clip {
+      clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
+    }
+
+    /* ── Entrance animations ───────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0);    }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes scaleIn {
+      from { opacity: 0; transform: scale(0.94); }
+      to   { opacity: 1; transform: scale(1);    }
+    }
+
+    .anim-fade-up  { animation: fadeUp  0.75s ease both; }
+    .anim-fade-in  { animation: fadeIn  0.6s  ease both; }
+    .anim-scale-in { animation: scaleIn 0.7s  ease both; }
+
+    .d-100 { animation-delay: 0.10s; }
+    .d-200 { animation-delay: 0.20s; }
+    .d-350 { animation-delay: 0.35s; }
+    .d-500 { animation-delay: 0.50s; }
+    .d-650 { animation-delay: 0.65s; }
+    .d-800 { animation-delay: 0.80s; }
+
+    /* ── Scroll-activated nav ──────────────────────────────── */
+    .nav-scrolled {
+      background-color: rgba(26, 14, 8, 0.94) !important;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(193,124,58,0.12);
+    }
+
+    /* ── Mobile menu ───────────────────────────────────────── */
+    #mobile-menu {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height 0.38s cubic-bezier(0.4,0,0.2,1),
+                  opacity    0.28s ease;
+    }
+    #mobile-menu.open {
+      max-height: 320px;
+      opacity: 1;
+    }
+
+    /* ── Hamburger morph ───────────────────────────────────── */
+    #hamburger span {
+      transition: transform 0.28s ease, opacity 0.2s ease;
+      transform-origin: center;
+    }
+    #hamburger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg);  }
+    #hamburger.is-open span:nth-child(2) { opacity: 0; transform: scaleX(0);           }
+    #hamburger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ── Stat dividers ─────────────────────────────────────── */
+    .stat-item + .stat-item {
+      border-left: 1px solid rgba(245,230,204,0.1);
+      padding-left: 2rem;
+    }
+    @media (min-width: 768px) {
+      .stat-item + .stat-item { padding-left: 3rem; }
+    }
+
+    /* ── CTA button hover arrow shift ─────────────────────── */
+    .btn-primary .arrow { transition: transform 0.2s ease; }
+    .btn-primary:hover  .arrow { transform: translateX(4px); }
+
+    /* ── Focus ring accessibility ──────────────────────────── */
+    :focus-visible {
+      outline: 2px solid #C17C3A;
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+
+    /* ── Scrollbar ─────────────────────────────────────────── */
+    ::-webkit-scrollbar              { width: 6px; }
+    ::-webkit-scrollbar-track        { background: #1A0E08; }
+    ::-webkit-scrollbar-thumb        { background: #3D1F0F; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover  { background: #C17C3A; }
+
+    /* ── Menu section ─────────────────────────────────────── */
+
+    /* Card base */
+    .menu-card {
+      background-color: #FAF6EF;
+      border: 1px solid rgba(26, 14, 8, 0.09);
+      border-radius: 2px;
+      display: flex;
+      flex-direction: column;
+      cursor: default;
+      transition: transform 0.26s cubic-bezier(0.4, 0, 0.2, 1),
+                  box-shadow 0.26s cubic-bezier(0.4, 0, 0.2, 1),
+                  border-color 0.26s ease;
+    }
+    .menu-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 22px 52px rgba(26, 14, 8, 0.10),
+                  0 8px 18px rgba(193, 124, 58, 0.07);
+      border-color: rgba(193, 124, 58, 0.30);
+    }
+
+    /* Card typography */
+    .card-name  { font-family: "Fraunces", Georgia, serif; font-size: 1.2rem; font-weight: 700; color: #1A0E08; line-height: 1.2; margin: 0; }
+    .card-price { font-family: "Fraunces", Georgia, serif; font-size: 1.1rem; font-weight: 700; color: #C17C3A; flex-shrink: 0; margin-top: 2px; }
+    .card-desc  { font-family: "DM Sans", system-ui, sans-serif; font-weight: 300; font-size: 0.875rem; color: #8C7060; line-height: 1.75; flex: 1; margin: 0; }
+    .card-footer    { padding-top: 0.75rem; border-top: 1px solid rgba(26, 14, 8, 0.06); }
+    .card-category  { font-family: "DM Sans", system-ui, sans-serif; font-size: 0.55rem; letter-spacing: 0.26em; text-transform: uppercase; color: rgba(140, 112, 96, 0.5); }
+
+    /* Badge pills */
+    .badge       { display: inline-flex; align-items: center; font-family: "DM Sans", system-ui, sans-serif; font-size: 0.52rem; letter-spacing: 0.24em; text-transform: uppercase; padding: 2px 8px; border-radius: 100px; border: 1px solid; margin-bottom: 6px; }
+    .badge-warm  { background: rgba(193,124,58,0.10); color: #9A5F24; border-color: rgba(193,124,58,0.24); }
+    .badge-new   { background: rgba(26,14,8,0.07);    color: #3D1F0F; border-color: rgba(26,14,8,0.16);   }
+    .badge-muted { background: rgba(140,112,96,0.10); color: #6B4E3D; border-color: rgba(140,112,96,0.22); }
+
+    /* Filter buttons */
+    .filter-btn {
+      font-family: "DM Sans", system-ui, sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      padding: 8px 18px;
+      border-radius: 2px;
+      border: 1px solid rgba(26, 14, 8, 0.18);
+      color: #8C7060;
+      background: transparent;
+      cursor: pointer;
+      transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+    }
+    .filter-btn:hover:not(.active) {
+      border-color: rgba(193, 124, 58, 0.35);
+      color: #1A0E08;
+    }
+    .filter-btn.active {
+      background-color: #C17C3A;
+      border-color:     #C17C3A;
+      color:            #1A0E08;
+    }
+
+    /* Staggered card entrance */
+    @keyframes cardIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .card-enter { animation: cardIn 0.45s ease both; }
+
+    /* ── Decorative ring sizes (responsive) ────────────────── */
+    .ring-lg { width: 540px; height: 540px; }
+    .ring-md { width: 400px; height: 400px; }
+    .ring-sm { width: 260px; height: 260px; }
+    @media (max-width: 768px) {
+      .ring-lg { width: 320px; height: 320px; }
+      .ring-md { width: 240px; height: 240px; }
+      .ring-sm { width: 158px; height: 158px; }
+    }
+  </style>
+</head>
+
+<body class="font-body bg-espresso text-cream antialiased overflow-x-hidden">
+
+  <!-- ════════════════════════════════════════════════════════
+       SKIP LINK — accessibility
+  ══════════════════════════════════════════════════════════ -->
+  <a href="#main-content"
+     class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:px-4 focus:py-2 focus:bg-caramel focus:text-espresso focus:rounded text-sm font-medium">
+    Skip to main content
+  </a>
+
+  <!-- ════════════════════════════════════════════════════════
+       NAVBAR
+  ══════════════════════════════════════════════════════════ -->
+  <header id="navbar"
+          class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+          role="banner">
+    <nav class="max-w-7xl mx-auto px-6 md:px-10 h-16 md:h-20 flex items-center justify-between"
+         role="navigation"
+         aria-label="Primary navigation">
+
+      <!-- Logotype -->
+      <a href="/"
+         class="group flex flex-col leading-none"
+         aria-label="Brûlée — Return to homepage">
+        <span class="font-display text-[1.75rem] md:text-[2rem] font-bold text-cream tracking-tight
+                     group-hover:text-caramel transition-colors duration-200">
+          Brûlée
+        </span>
+        <span class="font-body text-[9px] tracking-ultra uppercase text-cream/40 mt-px
+                     group-hover:text-caramel/60 transition-colors duration-200">
+          Artisan Coffee
+        </span>
+      </a>
+
+      <!-- Desktop links -->
+      <ul class="hidden md:flex items-center gap-8" role="list">
+        <li>
+          <a href="#menu"
+             class="font-body text-xs tracking-ultra uppercase text-cream/60
+                    hover:text-cream transition-colors duration-200 relative
+                    after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-px
+                    after:bg-caramel after:transition-all after:duration-200
+                    hover:after:w-full">
+            Menu
+          </a>
+        </li>
+        <li>
+          <a href="#about"
+             class="font-body text-xs tracking-ultra uppercase text-cream/60
+                    hover:text-cream transition-colors duration-200 relative
+                    after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-px
+                    after:bg-caramel after:transition-all after:duration-200
+                    hover:after:w-full">
+            About
+          </a>
+        </li>
+        <li>
+          <a href="#contact"
+             class="font-body text-xs tracking-ultra uppercase text-cream/60
+                    hover:text-cream transition-colors duration-200 relative
+                    after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-px
+                    after:bg-caramel after:transition-all after:duration-200
+                    hover:after:w-full">
+            Contact
+          </a>
+        </li>
+        <li>
+          <a href="#order"
+             class="ml-2 px-5 py-2.5 border border-caramel/70 text-caramel
+                    font-body text-xs tracking-ultra uppercase rounded-sm
+                    hover:bg-caramel hover:border-caramel hover:text-espresso
+                    transition-all duration-200">
+            Order Now
+          </a>
+        </li>
+      </ul>
+
+      <!-- Hamburger (mobile) -->
+      <button id="hamburger"
+              class="md:hidden flex flex-col gap-[5px] p-2 -mr-2"
+              aria-expanded="false"
+              aria-controls="mobile-menu"
+              aria-label="Open navigation menu">
+        <span class="block w-[22px] h-px bg-cream rounded-full"></span>
+        <span class="block w-[22px] h-px bg-cream rounded-full"></span>
+        <span class="block w-[22px] h-px bg-cream rounded-full"></span>
+      </button>
+    </nav>
+
+    <!-- Mobile dropdown -->
+    <div id="mobile-menu"
+         role="menu"
+         aria-label="Mobile navigation"
+         class="md:hidden bg-espresso-light/95 backdrop-blur-md border-t border-cream/8">
+      <ul class="flex flex-col px-6 py-5 gap-5" role="list">
+        <li role="none">
+          <a href="#menu"
+             role="menuitem"
+             class="font-body text-xs tracking-ultra uppercase text-cream/60 hover:text-cream block">
+            Menu
+          </a>
+        </li>
+        <li role="none">
+          <a href="#about"
+             role="menuitem"
+             class="font-body text-xs tracking-ultra uppercase text-cream/60 hover:text-cream block">
+            About
+          </a>
+        </li>
+        <li role="none">
+          <a href="#contact"
+             role="menuitem"
+             class="font-body text-xs tracking-ultra uppercase text-cream/60 hover:text-cream block">
+            Contact
+          </a>
+        </li>
+        <li role="none" class="pt-1 border-t border-cream/8">
+          <a href="#order"
+             role="menuitem"
+             class="font-body text-xs tracking-ultra uppercase text-caramel hover:text-caramel/80 block">
+            Order Now →
+          </a>
+        </li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- ════════════════════════════════════════════════════════
+       HERO
+  ══════════════════════════════════════════════════════════ -->
+  <main id="main-content">
+    <section id="hero"
+             class="relative min-h-screen bg-espresso hero-clip flex items-center overflow-hidden"
+             aria-label="Welcome to Brûlée — Artisan Coffee">
+
+      <!-- Ambient glow layers -->
+      <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <div class="absolute top-[20%] right-[15%] w-[500px] h-[500px]
+                    bg-caramel/8 rounded-full blur-[100px]"></div>
+        <div class="absolute bottom-[25%] left-[10%] w-[300px] h-[300px]
+                    bg-caramel/5 rounded-full blur-[80px]"></div>
+      </div>
+
+      <!-- Decorative concentric rings (top-right) -->
+      <div class="absolute -top-12 -right-12 md:-top-16 md:-right-16
+                  flex items-center justify-center pointer-events-none"
+           aria-hidden="true">
+        <div class="ring-lg absolute rounded-full border border-cream/[0.04]"></div>
+        <div class="ring-md absolute rounded-full border border-caramel/10"></div>
+        <div class="ring-sm absolute rounded-full border border-cream/[0.06]"></div>
+        <!-- Coffee icon center -->
+        <div class="w-12 h-12 md:w-16 md:h-16 rounded-full border border-caramel/20
+                    flex items-center justify-center">
+          <svg class="w-5 h-5 md:w-6 md:h-6 text-caramel/40" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
+            <path d="M17 8h1a4 4 0 0 1 0 8h-1M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8z"/>
+            <path d="M6 2v2M10 2v2M14 2v2"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Vertical rule (desktop) -->
+      <div class="hidden lg:block absolute left-10 top-32 bottom-32
+                  w-px bg-gradient-to-b from-transparent via-cream/10 to-transparent"
+           aria-hidden="true"></div>
+
+      <!-- ── Hero content ── -->
+      <div class="relative w-full max-w-7xl mx-auto px-6 md:px-10
+                  pt-28 pb-32 md:pt-40 md:pb-40">
+        <div class="max-w-2xl xl:max-w-[740px]">
+
+          <!-- Live badge -->
+          <div class="anim-fade-in d-100 inline-flex items-center gap-2.5 mb-8 md:mb-10">
+            <span class="relative flex h-2 w-2" aria-hidden="true">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-caramel opacity-60"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-caramel"></span>
+            </span>
+            <span class="font-body text-[10px] tracking-ultra uppercase text-cream/45">
+              Open Today · 7am – 9pm
+            </span>
+          </div>
+
+          <!-- Headline -->
+          <h1 class="font-display font-bold leading-[1.04] tracking-tight mb-6 md:mb-8">
+            <span class="anim-fade-up d-200 block text-5xl sm:text-6xl md:text-7xl xl:text-[5.25rem] text-cream">
+              Artisan Coffee,
+            </span>
+            <span class="anim-fade-up d-350 block text-5xl sm:text-6xl md:text-7xl xl:text-[5.25rem] text-caramel italic">
+              Roasted Daily.
+            </span>
+          </h1>
+
+          <!-- Subtext -->
+          <p class="anim-fade-up d-500 font-body font-light text-base md:text-[1.05rem]
+                    text-cream/55 leading-[1.8] max-w-[480px] mb-10 md:mb-12">
+            From single-origin beans to signature blends — every cup is crafted with intention.
+            Come in, slow down, and stay awhile.
+          </p>
+
+          <!-- CTAs -->
+          <div class="anim-fade-up d-650 flex flex-wrap gap-3 md:gap-4">
+            <a href="#menu"
+               class="btn-primary group inline-flex items-center gap-3
+                      px-7 py-3.5 md:px-8 md:py-4
+                      bg-caramel text-espresso font-body font-medium
+                      text-xs tracking-ultra uppercase rounded-sm
+                      hover:bg-caramel-deep hover:shadow-xl hover:shadow-caramel/20
+                      transition-all duration-200"
+               aria-label="View our full menu">
+              View Menu
+              <svg class="arrow w-4 h-4" viewBox="0 0 16 16" fill="none"
+                   stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path d="M3 8h10M9 4l4 4-4 4"/>
+              </svg>
+            </a>
+            <a href="#about"
+               class="inline-flex items-center gap-2
+                      px-7 py-3.5 md:px-8 md:py-4
+                      border border-cream/20 text-cream/65
+                      font-body font-light text-xs tracking-ultra uppercase rounded-sm
+                      hover:border-cream/45 hover:text-cream hover:bg-cream/5
+                      transition-all duration-200"
+               aria-label="Learn our story">
+              Our Story
+            </a>
+          </div>
+
+          <!-- Stats strip -->
+          <div class="anim-fade-up d-800 flex gap-8 md:gap-0
+                      mt-16 md:mt-20 pt-8 border-t border-cream/[0.08]"
+               aria-label="Quick facts about Brûlée">
+            <dl class="flex gap-8 md:gap-0">
+              <div class="stat-item flex flex-col gap-1" role="group">
+                <dt class="font-body text-[10px] tracking-ultra uppercase text-cream/35">
+                  Bean Origins
+                </dt>
+                <dd class="font-display text-3xl md:text-[2.25rem] font-bold text-cream leading-none">
+                  12<span class="text-caramel">+</span>
+                </dd>
+              </div>
+              <div class="stat-item pl-8 md:pl-12 flex flex-col gap-1" role="group">
+                <dt class="font-body text-[10px] tracking-ultra uppercase text-cream/35">
+                  Est.
+                </dt>
+                <dd class="font-display text-3xl md:text-[2.25rem] font-bold text-cream leading-none">
+                  2018
+                </dd>
+              </div>
+              <div class="stat-item pl-8 md:pl-12 flex flex-col gap-1" role="group">
+                <dt class="font-body text-[10px] tracking-ultra uppercase text-cream/35">
+                  Avg. Rating
+                </dt>
+                <dd class="font-display text-3xl md:text-[2.25rem] font-bold text-cream leading-none">
+                  4.9<span class="text-caramel text-xl align-super ml-0.5">★</span>
+                </dd>
+              </div>
+            </dl>
+          </div>
+
+        </div><!-- /content column -->
+      </div><!-- /container -->
+
+      <!-- Scroll hint -->
+      <div class="absolute bottom-10 left-1/2 -translate-x-1/2
+                  flex flex-col items-center gap-2.5 anim-fade-in d-800"
+           aria-hidden="true">
+        <span class="font-body text-[9px] tracking-ultra uppercase text-cream/25">
+          Scroll
+        </span>
+        <div class="w-px h-10 bg-gradient-to-b from-cream/25 to-transparent"></div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════
+         PLACEHOLDER SECTIONS — wire these up next
+    ════════════════════════════════════════════════════ -->
+    <!-- ════════════════════════════════════════════════════
+         MENU SECTION
+    ════════════════════════════════════════════════════ -->
+    <section id="menu"
+             class="bg-parchment py-24 md:py-32"
+             aria-labelledby="menu-heading">
+      <div class="max-w-7xl mx-auto px-6 md:px-10">
+
+        <!-- Section header -->
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between
+                    gap-5 mb-12 md:mb-16">
+          <div>
+            <span class="font-body text-[10px] tracking-ultra uppercase text-fog/50 block mb-3"
+                  aria-hidden="true">
+              01 — Our Menu
+            </span>
+            <h2 id="menu-heading"
+                class="font-display text-4xl md:text-5xl font-bold text-espresso leading-[1.1]">
+              Sourced with care,<br />
+              <em class="text-caramel not-italic">prepared with precision.</em>
+            </h2>
+          </div>
+          <p class="font-body font-light text-sm text-fog max-w-[280px] leading-relaxed md:text-right">
+            Every item is seasonal, intentional, and made to be enjoyed slowly.
+          </p>
+        </div>
+
+        <!-- Category filters — injected by renderMenu() -->
+        <div id="menu-filters"
+             class="flex flex-wrap gap-2 mb-10 md:mb-12"
+             role="tablist"
+             aria-label="Filter menu by category">
+        </div>
+
+        <!-- Cards grid — injected by renderMenu() -->
+        <div id="menu-grid"
+             class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6"
+             role="list"
+             aria-live="polite"
+             aria-label="Menu items">
+        </div>
+
+      </div>
+    </section>
+
+    <section id="about"
+             class="min-h-[50vh] flex items-center justify-center bg-cream"
+             aria-label="About section — coming soon">
+      <p class="font-display italic text-2xl text-fog/60">About section coming soon…</p>
+    </section>
+
+    <section id="contact"
+             class="min-h-[50vh] flex items-center justify-center bg-espresso"
+             aria-label="Contact section — coming soon">
+      <p class="font-display italic text-2xl text-cream/30">Contact section coming soon…</p>
+    </section>
+  </main>
+
+  <!-- ════════════════════════════════════════════════════════
+       FOOTER (minimal placeholder)
+  ══════════════════════════════════════════════════════════ -->
+  <footer class="bg-espresso border-t border-cream/8 py-8 px-6 md:px-10"
+          role="contentinfo">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center
+                justify-between gap-4 text-cream/30">
+      <span class="font-display text-lg font-bold">Brûlée</span>
+      <p class="font-body text-xs tracking-wide text-center">
+        © 2025 Brûlée Coffee Co. · All rights reserved.
+      </p>
+      <p class="font-body text-xs tracking-widest uppercase">
+        Mon–Fri 7am–9pm · Sat–Sun 8am–10pm
+      </p>
+    </div>
+  </footer>
+
+  <!-- ════════════════════════════════════════════════════════
+       SCRIPTS
+  ══════════════════════════════════════════════════════════ -->
+  <script>
+    (function () {
+      "use strict";
+
+      /* ── Navbar: transparent → frosted on scroll ── */
+      const navbar = document.getElementById("navbar");
+      let ticking = false;
+      function onScroll() {
+        if (!ticking) {
+          requestAnimationFrame(() => {
+            if (window.scrollY > 30) {
+              navbar.classList.add("nav-scrolled");
+            } else {
+              navbar.classList.remove("nav-scrolled");
+            }
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }
+      window.addEventListener("scroll", onScroll, { passive: true });
+
+      /* ── Mobile menu toggle ── */
+      const hamburger   = document.getElementById("hamburger");
+      const mobileMenu  = document.getElementById("mobile-menu");
+      const mobileLinks = mobileMenu.querySelectorAll("a");
+
+      function closeMenu() {
+        mobileMenu.classList.remove("open");
+        hamburger.classList.remove("is-open");
+        hamburger.setAttribute("aria-expanded", "false");
+        hamburger.setAttribute("aria-label", "Open navigation menu");
+      }
+
+      hamburger.addEventListener("click", () => {
+        const isOpen = mobileMenu.classList.toggle("open");
+        hamburger.classList.toggle("is-open", isOpen);
+        hamburger.setAttribute("aria-expanded", String(isOpen));
+        hamburger.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu");
+      });
+
+      // Close on link click
+      mobileLinks.forEach(link => link.addEventListener("click", closeMenu));
+
+      // Close on outside click
+      document.addEventListener("click", (e) => {
+        if (!navbar.contains(e.target)) closeMenu();
+      });
+
+      // Close on Escape
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeMenu();
+      });
+
+      /* ── IntersectionObserver: reveal sections below fold ── */
+      const revealTargets = document.querySelectorAll(
+        "#menu, #about, #contact, footer"
+      );
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = "1";
+              entry.target.style.transform = "none";
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.08 }
+      );
+      revealTargets.forEach((el) => {
+        el.style.opacity = "0";
+        el.style.transform = "translateY(16px)";
+        el.style.transition = "opacity 0.65s ease, transform 0.65s ease";
+        revealObserver.observe(el);
+      });
+
+      /* ── Render from SITE_CONFIG (client-ready) ── */
+      // This keeps HTML in sync with config without manual editing.
+      // Extend this function as new sections are added.
+      const cfg = window.SITE_CONFIG;
+      if (cfg) {
+        // Page title
+        document.title = cfg.brand.name + " — " + cfg.hero.headline.join(" ");
+        console.info("[SITE_CONFIG] Loaded:", cfg.brand.name);
+      }
+
+      /* ── renderMenu — builds filter tabs + card grid from SITE_CONFIG.menu ── */
+      function renderMenu(config) {
+        const filtersEl = document.getElementById("menu-filters");
+        const gridEl    = document.getElementById("menu-grid");
+        if (!filtersEl || !gridEl || !config.menu) return;
+
+        let activeCategory = "All";
+
+        // Maps badge label → CSS class (defined in <style>)
+        const BADGE_CLASS = {
+          "Popular":     "badge-warm",
+          "Chef's Pick": "badge-warm",
+          "New":         "badge-new",
+          "Seasonal":    "badge-muted",
+        };
+
+        function buildFilters() {
+          filtersEl.innerHTML = config.menu.categories.map(cat => `
+            <button
+              class="filter-btn${cat === activeCategory ? " active" : ""}"
+              data-cat="${cat}"
+              role="tab"
+              aria-selected="${cat === activeCategory}"
+              aria-controls="menu-grid">
+              ${cat}
+            </button>
+          `).join("");
+
+          filtersEl.querySelectorAll(".filter-btn").forEach(btn => {
+            btn.addEventListener("click", () => {
+              activeCategory = btn.dataset.cat;
+              buildFilters();
+              buildGrid();
+            });
+          });
+        }
+
+        function cardHTML(item, idx) {
+          const badgeMarkup = item.badge
+            ? `<span class="badge ${BADGE_CLASS[item.badge] || "badge-muted"}"
+                    aria-label="${item.badge} item">${item.badge}</span><br />`
+            : "";
+
+          return `
+            <article
+              class="menu-card card-enter"
+              style="animation-delay: ${idx * 0.07}s;"
+              role="listitem"
+              aria-label="${item.name}, ${item.price}">
+              <div style="padding: 1.5rem 1.75rem; display: flex; flex-direction: column; gap: 1rem; height: 100%;">
+
+                <!-- Name + price row -->
+                <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 0.75rem;">
+                  <div>
+                    ${badgeMarkup}
+                    <h3 class="card-name">${item.name}</h3>
+                  </div>
+                  <span class="card-price" aria-label="Price: ${item.price}">${item.price}</span>
+                </div>
+
+                <!-- Description -->
+                <p class="card-desc">${item.description}</p>
+
+                <!-- Footer: category label -->
+                <div class="card-footer">
+                  <span class="card-category" aria-label="Category: ${item.category}">${item.category}</span>
+                </div>
+
+              </div>
+            </article>
+          `;
+        }
+
+        function buildGrid() {
+          const items = activeCategory === "All"
+            ? config.menu.items
+            : config.menu.items.filter(i => i.category === activeCategory);
+
+          gridEl.innerHTML = items.map((item, idx) => cardHTML(item, idx)).join("");
+        }
+
+        buildFilters();
+        buildGrid();
+      }
+
+      if (cfg) renderMenu(cfg);
+    })();
+  </script>
+</body>
+</html>
